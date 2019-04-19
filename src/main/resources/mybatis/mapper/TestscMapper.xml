@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cy.demo.testsc.dao.TestscMapper">
+  <resultMap id="BaseResultMap" type="com.cy.demo.testsc.entity.Testsc">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="test_SC" jdbcType="VARCHAR" property="testSc" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, test_SC
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from testsc
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from testsc
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.cy.demo.testsc.entity.Testsc" useGeneratedKeys="true">
+    insert into testsc (test_SC)
+    values (#{testSc,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.cy.demo.testsc.entity.Testsc" useGeneratedKeys="true">
+    insert into testsc
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="testSc != null">
+        test_SC,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="testSc != null">
+        #{testSc,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cy.demo.testsc.entity.Testsc">
+    update testsc
+    <set>
+      <if test="testSc != null">
+        test_SC = #{testSc,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cy.demo.testsc.entity.Testsc">
+    update testsc
+    set test_SC = #{testSc,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,25 @@
+server:
+   servlet:
+     context-path: /cy
+   port: 80
+
+testname: cy
+
+
+#公共配置与profiles选择无关 mapperLocations指的路径是src/main/resources
+mybatis:
+  # 指定全局配置文件位置
+  config-location: classpath:mybatis/mybatis-config.xml
+#  typeAliasesPackage: com.cy.demo.user.entity
+  mapperLocations: classpath:mybatis/mapper/*.xml
+
+
+spring:
+  datasource:
+#    type: com.alibaba.druid.pool.DruidDataSource
+#    druid:
+#      first:
+        driverClassName: com.mysql.jdbc.Driver
+        url: jdbc:mysql://localhost:3306/cy_test?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true
+        username: root
+        password: 123456
